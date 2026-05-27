@@ -16,8 +16,17 @@
         }
         header h1 { font-size: 24px; font-weight: 700; }
         header p { font-size: 13px; opacity: 0.8; }
-        .pulse { width: 10px; height: 10px; background: #68d391; border-radius: 50%; animation: pulse 2s infinite; }
+        .pulse { width: 10px; height: 10px; background: #68d391; border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0; }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        .header-left { display: flex; align-items: center; gap: 16px; flex: 1; }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .user-info { font-size: 13px; opacity: 0.85; }
+        .btn-logout {
+            padding: 7px 16px; border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 8px; background: transparent; color: white;
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-logout:hover { background: rgba(255,255,255,0.15); }
         .stats { display: flex; gap: 20px; padding: 24px 40px; }
         .stat-card { flex: 1; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid; }
         .stat-card.blue { border-color: #3182ce; }
@@ -64,10 +73,16 @@
 <body>
 
 <header>
-    <div class="pulse"></div>
-    <div>
-        <h1>🏥 Hospital Management System <span class="gateway-badge">via API Gateway</span></h1>
-        <p>Microservices architecture · Patient Service · Appointment Service · API Gateway</p>
+    <div class="header-left">
+        <div class="pulse"></div>
+        <div>
+            <h1>🏥 Hospital Management System <span class="gateway-badge">via API Gateway</span></h1>
+            <p>Microservices architecture · Patient Service · Appointment Service · API Gateway</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <span class="user-info" id="userEmail"></span>
+        <button class="btn-logout" onclick="logout()">Logout</button>
     </div>
 </header>
 
@@ -147,6 +162,22 @@ const SUPABASE_KEY = "sb_publishable_Yso3unAMOzjoLNHVxqxmkw_SJ17c2qH";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const GATEWAY = "https://api-gateway-kn5s.onrender.com";
 
+// Auth guard — redirect to login if not logged in
+supabaseClient.auth.getSession().then(({ data }) => {
+    if (!data.session) {
+        window.location.href = "login.html";
+    } else {
+        document.getElementById("userEmail").textContent = data.session.user.email;
+        loadPatients();
+        loadAppointments();
+    }
+});
+
+async function logout() {
+    await supabaseClient.auth.signOut();
+    window.location.href = "login.html";
+}
+
 function switchTab(tab, el) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -225,9 +256,6 @@ async function loadAppointments() {
         document.getElementById("appointmentTable").innerHTML = '<tr><td colspan="6" class="empty">Could not load appointments</td></tr>';
     }
 }
-
-loadPatients();
-loadAppointments();
 </script>
 </body>
 </html>
