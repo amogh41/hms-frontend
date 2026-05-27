@@ -8,7 +8,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a202c; }
-
         header {
             background: linear-gradient(135deg, #1a365d, #2b6cb0);
             color: white; padding: 20px 40px;
@@ -19,13 +18,8 @@
         header p { font-size: 13px; opacity: 0.8; }
         .pulse { width: 10px; height: 10px; background: #68d391; border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
         .stats { display: flex; gap: 20px; padding: 24px 40px; }
-        .stat-card {
-            flex: 1; background: white; border-radius: 12px;
-            padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border-left: 4px solid;
-        }
+        .stat-card { flex: 1; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid; }
         .stat-card.blue { border-color: #3182ce; }
         .stat-card.green { border-color: #38a169; }
         .stat-card.purple { border-color: #805ad5; }
@@ -34,66 +28,37 @@
         .stat-card.blue .number { color: #3182ce; }
         .stat-card.green .number { color: #38a169; }
         .stat-card.purple .number { color: #805ad5; }
-
         .tabs { display: flex; gap: 4px; padding: 0 40px; margin-bottom: 24px; }
-        .tab {
-            padding: 10px 24px; border-radius: 8px 8px 0 0;
-            border: none; cursor: pointer; font-size: 14px; font-weight: 600;
-            background: #e2e8f0; color: #718096; transition: all 0.2s;
-        }
+        .tab { padding: 10px 24px; border-radius: 8px 8px 0 0; border: none; cursor: pointer; font-size: 14px; font-weight: 600; background: #e2e8f0; color: #718096; transition: all 0.2s; }
         .tab.active { background: white; color: #2b6cb0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-
         .content { padding: 0 40px 40px; display: flex; gap: 24px; }
         .panel { display: none; width: 100%; }
         .panel.active { display: flex; gap: 24px; }
-
-        .form-card, .table-card {
-            background: white; border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;
-        }
+        .form-card, .table-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
         .form-card { width: 340px; flex-shrink: 0; }
         .table-card { flex: 1; }
-
-        .card-header {
-            padding: 16px 20px; font-weight: 600; font-size: 15px;
-            border-bottom: 1px solid #e2e8f0; display: flex;
-            align-items: center; gap: 8px;
-        }
+        .card-header { padding: 16px 20px; font-weight: 600; font-size: 15px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
         .card-header.blue { background: #ebf8ff; color: #2b6cb0; }
         .card-header.green { background: #f0fff4; color: #276749; }
-
         .form-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-        input, select {
-            width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0;
-            border-radius: 8px; font-size: 14px; outline: none;
-            transition: border 0.2s;
-        }
+        input, select { width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: border 0.2s; }
         input:focus, select:focus { border-color: #3182ce; }
         label { font-size: 12px; font-weight: 600; color: #4a5568; margin-bottom: 2px; display: block; }
-
-        .btn {
-            padding: 11px; border: none; border-radius: 8px;
-            font-size: 14px; font-weight: 600; cursor: pointer;
-            transition: all 0.2s; width: 100%;
-        }
+        .btn { padding: 11px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%; }
         .btn-blue { background: #3182ce; color: white; }
         .btn-blue:hover { background: #2c5282; }
         .btn-green { background: #38a169; color: white; }
         .btn-green:hover { background: #276749; }
-
         table { width: 100%; border-collapse: collapse; }
         thead { background: #f7fafc; }
         th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; }
         td { padding: 12px 16px; font-size: 14px; border-top: 1px solid #f0f4f8; }
         tr:hover td { background: #f7fafc; }
-
-        .badge {
-            padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
-        }
+        .badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .badge-green { background: #c6f6d5; color: #276749; }
         .badge-blue { background: #bee3f8; color: #2c5282; }
-
         .empty { text-align: center; padding: 40px; color: #a0aec0; font-size: 14px; }
+        .gateway-badge { background: #805ad5; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
     </style>
 </head>
 <body>
@@ -101,8 +66,8 @@
 <header>
     <div class="pulse"></div>
     <div>
-        <h1>🏥 Hospital Management System</h1>
-        <p>Manage patients and appointments in one place</p>
+        <h1>🏥 Hospital Management System <span class="gateway-badge">via API Gateway</span></h1>
+        <p>Microservices architecture · Patient Service · Appointment Service · API Gateway</p>
     </div>
 </header>
 
@@ -117,18 +82,16 @@
     </div>
     <div class="stat-card purple">
         <div class="number" id="bookedCount">0</div>
-        <div class="label">Booked Today</div>
+        <div class="label">Booked Appointments</div>
     </div>
 </div>
 
 <div class="tabs">
-    <button class="tab active" onclick="switchTab('patients')">👤 Patients</button>
-    <button class="tab" onclick="switchTab('appointments')">📅 Appointments</button>
+    <button class="tab active" onclick="switchTab('patients', this)">👤 Patients</button>
+    <button class="tab" onclick="switchTab('appointments', this)">📅 Appointments</button>
 </div>
 
 <div class="content">
-
-    <!-- Patients Panel -->
     <div class="panel active" id="panel-patients">
         <div class="form-card">
             <div class="card-header blue">➕ Add New Patient</div>
@@ -144,12 +107,11 @@
             <div class="card-header blue">👥 Patient Records</div>
             <table>
                 <thead><tr><th>#</th><th>Name</th><th>Age</th><th>Condition</th><th>Phone</th><th>Status</th></tr></thead>
-                <tbody id="patientTable"><tr><td colspan="6" class="empty">No patients yet</td></tr></tbody>
+                <tbody id="patientTable"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
             </table>
         </div>
     </div>
 
-    <!-- Appointments Panel -->
     <div class="panel" id="panel-appointments">
         <div class="form-card">
             <div class="card-header green">➕ Book Appointment</div>
@@ -173,23 +135,22 @@
             <div class="card-header green">📋 Appointments</div>
             <table>
                 <thead><tr><th>#</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
-                <tbody id="appointmentTable"><tr><td colspan="6" class="empty">No appointments yet</td></tr></tbody>
+                <tbody id="appointmentTable"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
             </table>
         </div>
     </div>
-
 </div>
 
 <script>
 const SUPABASE_URL = "https://ekqzqlamjalakueuozxv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_Yso3unAMOzjoLNHVxqxmkw_SJ17c2qH";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const APPT_URL = "https://appointment-service-os11.onrender.com/appointments";
+const GATEWAY = "https://api-gateway-kn5s.onrender.com";
 
-function switchTab(tab) {
+function switchTab(tab, el) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    event.target.classList.add('active');
+    el.classList.add('active');
     document.getElementById('panel-' + tab).classList.add('active');
 }
 
@@ -230,7 +191,7 @@ async function bookAppointment() {
     const date = document.getElementById("a-date").value;
     const time = document.getElementById("a-time").value;
     if (!patientName || !doctor || !date || !time) { alert("Please fill all fields"); return; }
-    const res = await fetch(APPT_URL, {
+    const res = await fetch(GATEWAY + "/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ patientName, doctor, date, time })
@@ -244,21 +205,25 @@ async function bookAppointment() {
 }
 
 async function loadAppointments() {
-    const res = await fetch(APPT_URL);
-    const data = await res.json();
-    const table = document.getElementById("appointmentTable");
-    if (!data || data.length === 0) { table.innerHTML = '<tr><td colspan="6" class="empty">No appointments yet</td></tr>'; return; }
-    document.getElementById("appointmentCount").textContent = data.length;
-    document.getElementById("bookedCount").textContent = data.filter(a => a.status === "BOOKED").length;
-    table.innerHTML = data.map((a, i) => `
-        <tr>
-            <td>${i+1}</td>
-            <td><strong>${a.patientName}</strong></td>
-            <td>${a.doctor}</td>
-            <td>${a.date}</td>
-            <td>${a.time}</td>
-            <td><span class="badge badge-green">${a.status}</span></td>
-        </tr>`).join('');
+    try {
+        const res = await fetch(GATEWAY + "/appointments");
+        const data = await res.json();
+        const table = document.getElementById("appointmentTable");
+        if (!data || data.length === 0) { table.innerHTML = '<tr><td colspan="6" class="empty">No appointments yet</td></tr>'; return; }
+        document.getElementById("appointmentCount").textContent = data.length;
+        document.getElementById("bookedCount").textContent = data.filter(a => a.status === "BOOKED").length;
+        table.innerHTML = data.map((a, i) => `
+            <tr>
+                <td>${i+1}</td>
+                <td><strong>${a.patientName}</strong></td>
+                <td>${a.doctor}</td>
+                <td>${a.date}</td>
+                <td>${a.time}</td>
+                <td><span class="badge badge-green">${a.status}</span></td>
+            </tr>`).join('');
+    } catch(e) {
+        document.getElementById("appointmentTable").innerHTML = '<tr><td colspan="6" class="empty">Could not load appointments</td></tr>';
+    }
 }
 
 loadPatients();
